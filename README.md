@@ -23,6 +23,12 @@
   3. Запустить InternetShop.WPF
 
 
+ТЕСТОВЫЕ АККАУНТЫ
+
+  Администратор:  admin@shop.ru  /  admin123
+  Покупатели: anna@mail.ru, ivan@mail.ru, maria@mail.ru / pass123
+
+
 ОЧИСТИТЬ И СОЗДАТЬ БД :
 
  	cd diploma-internet-shop-recommendation-system
