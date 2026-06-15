@@ -21,13 +21,13 @@
 
   2. Запустить InternetShop.API:
 	
-	 cd diploma-internet-shop-recommendation-system\src\InternetShop.API
+	cd diploma-internet-shop-recommendation-system\src\InternetShop.API
 
 	 dotnet run
        
   4. Запустить InternetShop.WPF:
 
-  	 cd diploma-internet-shop-recommendation-system\src\InternetShop.WPF
+  	cd diploma-internet-shop-recommendation-system\src\InternetShop.WPF
 
 	 dotnet run
 
