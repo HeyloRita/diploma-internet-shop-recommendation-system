@@ -19,9 +19,10 @@
        
   3. Запустить InternetShop.WPF
 
-ОЧИСТИТЬ И СОЗДАТЬ БД 
+ОЧИСТИТЬ И СОЗДАТЬ БД :
 
- cd "E:\путь до проекта\Интернет магазин"
+	cd "E:\путь до проекта\Интернет магазин"
 
- docker compose down -v
- docker compose up -d
+	docker compose down -v
+
+	docker compose up -d
