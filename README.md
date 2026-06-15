@@ -1,28 +1,25 @@
 # diploma-internet-shop-recommendation-system
 
-  Автоматизация управления интернет-магазином с интеграцией системы рекомендаций               
+**Автоматизация управления интернет-магазином с интеграцией системы рекомендаций на основе машинного обучения**
 
-ТРЕБОВАНИЯ
+Выпускная квалификационная работа (ВКР)  
+Студент: Хейло Маргарита Витальевна  
+Группа: ИПО-41.22
 
-  • Docker Desktop  https://www.docker.com/products/docker-desktop/
-  • .NET 8 SDK      https://dotnet.microsoft.com/download
+---
 
-ЗАПУСК 
+## Требования к окружению
 
-  1. Запустить докер, если нет базы данных - создать:
+- [.NET 8 SDK](https://dotnet.microsoft.com/download) (обязательно)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (для запуска PostgreSQL)
+- Windows 10/11 (для WPF-клиента) или любой ОС с поддержкой .NET 8 (серверная часть)
 
-	cd diploma-internet-shop-recommendation-system
+---
 
-	docker compose up -d
+## Установка и запуск
 
-  2. Запустить InternetShop.API
-       
-  3. Запустить InternetShop.WPF
+### 1. Клонируйте репозиторий
 
-ОЧИСТИТЬ И СОЗДАТЬ БД :
-
-	cd "E:\путь до проекта\Интернет магазин"
-
-	docker compose down -v
-
-	docker compose up -d
+```bash
+git clone https://github.com/HeYLoRita/diploma-internet-shop-recommendation-system.git
+cd diploma-internet-shop-recommendation-system
