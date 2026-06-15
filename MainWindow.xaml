@@ -1,0 +1,171 @@
+<Window x:Class="InternetShop.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Интернет-магазин" 
+        Icon="Иконка.ico"
+        Height="720" Width="1200"
+        MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="{StaticResource BgBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="{StaticResource SidebarBrush}">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="20,24,20,16"
+                        BorderBrush="#2E3E54" BorderThickness="0,0,0,1">
+                    <StackPanel>
+                        <TextBlock Text="🛒 Магазин"
+                                   Foreground="White" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding UserName}"
+                                   Foreground="{StaticResource SidebarTextBrush}"
+                                   FontSize="12" Margin="0,4,0,0"/>
+                        <Border CornerRadius="3" Padding="6,2" Margin="0,6,0,0"
+                                HorizontalAlignment="Left">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#1A6080"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                            <Setter Property="Background" Value="#7B3F00"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock FontSize="10" FontWeight="Bold">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text"       Value="Покупатель"/>
+                                        <Setter Property="Foreground" Value="#7FD3F0"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                                <Setter Property="Text"       Value="Администратор"/>
+                                                <Setter Property="Foreground" Value="#FFB347"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border DockPanel.Dock="Bottom" Padding="8,8"
+                        BorderBrush="#2E3E54" BorderThickness="0,1,0,0">
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding LogoutCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="⏻" Foreground="#E84855" Margin="0,0,10,0"/>
+                            <TextBlock Text="Выйти" Foreground="#E84855"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="0,12,0,0">
+
+                        <TextBlock Text="ПОКУПАТЕЛЬ"
+                                   Foreground="#556070" FontSize="10" FontWeight="Bold"
+                                   Margin="28,4,0,6"
+                                   Visibility="{Binding IsAdmin,
+                                       Converter={StaticResource InverseBoolToVisibility}}"/>
+
+                        <Button Style="{StaticResource NavButton}"
+                                Command="{Binding NavigateCatalogCommand}"
+                                Visibility="{Binding IsAdmin,
+                                    Converter={StaticResource InverseBoolToVisibility}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📦" Margin="0,0,10,0"/>
+                                <TextBlock Text="Каталог товаров"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource NavButton}"
+                                Command="{Binding NavigateRecommendationsCommand}"
+                                Visibility="{Binding IsAdmin,
+                                    Converter={StaticResource InverseBoolToVisibility}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="⭐" Margin="0,0,10,0"/>
+                                <TextBlock Text="Рекомендации"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource NavButton}"
+                                Command="{Binding NavigateOrdersCommand}"
+                                Visibility="{Binding IsAdmin,
+                                    Converter={StaticResource InverseBoolToVisibility}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📋" Margin="0,0,10,0"/>
+                                <TextBlock Text="История покупок"/>
+                            </StackPanel>
+                        </Button>
+
+                        <StackPanel Visibility="{Binding IsAdmin,
+                                        Converter={StaticResource BoolToVisibility}}">
+                            <TextBlock Text="АДМИНИСТРАТОР"
+                                       Foreground="#556070" FontSize="10" FontWeight="Bold"
+                                       Margin="28,4,0,6"/>
+
+                            <Button Style="{StaticResource NavButton}"
+                                    Command="{Binding NavigateAnalyticsCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="📊" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Аналитика"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavButton}"
+                                    Command="{Binding NavigateProductsCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="🏪" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Товары"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavButton}"
+                                    Command="{Binding NavigateLogsCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="📄" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Журнал событий"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavButton}"
+                                    Command="{Binding NavigateRestockCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="📦" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Задания на дозаказ"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavButton}"
+                                    Command="{Binding NavigateRecommendationsInfoCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="🤖" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Модель рекомендаций"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource NavButton}"
+                                    Command="{Binding NavigateSettingsCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="⚙️" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Настройки"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+
+        <ContentControl x:Name="ContentArea" Grid.Column="1"/>
+    </Grid>
+</Window>
