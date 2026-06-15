@@ -27,6 +27,7 @@
 ТЕСТОВЫЕ АККАУНТЫ
 
   Администратор:  admin@shop.ru  /  admin123
+  
   Покупатели: anna@mail.ru, ivan@mail.ru, maria@mail.ru / pass123
 
 
