@@ -7,6 +7,7 @@
 ТРЕБОВАНИЯ
 
   • Docker Desktop  https://www.docker.com/products/docker-desktop/
+  
   • .NET 8 SDK      https://dotnet.microsoft.com/download
 
 
