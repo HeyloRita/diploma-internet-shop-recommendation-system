@@ -11,7 +11,7 @@
 
   1. Запустить докер, если нет базы данных - создать:
 
-	cd "E:\путь до проекта\Интернет магазин"
+	cd diploma-internet-shop-recommendation-system
 
 	docker compose up -d
 
