@@ -1,0 +1,111 @@
+<UserControl x:Class="InternetShop.WPF.Views.Admin.AdminRestockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BgBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" Padding="24,16"
+                BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Left">
+                    <TextBlock Text="📦 Задания на дозаказ" FontSize="22" FontWeight="Bold"
+                               Foreground="{StaticResource TextBrush}"/>
+                    <TextBlock Text="Товары с остатком ниже установленного порога"
+                               FontSize="13" Foreground="{StaticResource MutedBrush}"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+                <Button DockPanel.Dock="Right" Style="{StaticResource OutlineButton}"
+                        Content="↻ Обновить" Command="{Binding RefreshCommand}"
+                        Padding="14,7" VerticalAlignment="Center"/>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="1" Margin="20,16" Style="{StaticResource Card}" Padding="0">
+            <Grid>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40"
+                            Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibility}}">
+                    <ProgressBar IsIndeterminate="True" Width="200" Height="4"
+                                 Foreground="{StaticResource PrimaryBrush}"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Visibility="{Binding StatusText,
+                                Converter={StaticResource StringToVisibility}}">
+                    <TextBlock Text="✅" FontSize="48" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding StatusText}" FontSize="16"
+                               Foreground="{StaticResource MutedBrush}"
+                               HorizontalAlignment="Center" Margin="0,12,0,0"/>
+                </StackPanel>
+
+                <DataGrid ItemsSource="{Binding Tasks}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserSortColumns="True"
+                          GridLinesVisibility="None"
+                          HeadersVisibility="Column"
+                          RowBackground="White"
+                          AlternatingRowBackground="#FAFBFC"
+                          BorderThickness="0"
+                          FontSize="13"
+                          Visibility="{Binding IsBusy,
+                              Converter={StaticResource InverseBoolToVisibility}}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Setter Property="MinHeight"                Value="48"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderBrush"              Value="{StaticResource BorderBrush}"/>
+                            <Setter Property="BorderThickness"          Value="0,0,0,1"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background"      Value="#F4F6F8"/>
+                            <Setter Property="Foreground"      Value="{StaticResource MutedBrush}"/>
+                            <Setter Property="FontWeight"      Value="SemiBold"/>
+                            <Setter Property="FontSize"        Value="12"/>
+                            <Setter Property="Padding"         Value="14,10"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="BorderBrush"     Value="{StaticResource BorderBrush}"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Padding"          Value="14,0"/>
+                            <Setter Property="BorderThickness"  Value="0"/>
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridCell">
+                                        <Border Background="{TemplateBinding Background}"
+                                                BorderThickness="0"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Обнаружено"
+                                            Binding="{Binding DetectedAt, StringFormat={}{0:dd.MM.yyyy HH:mm}}"
+                                            Width="155"/>
+                        <DataGridTextColumn Header="Товар"
+                                            Binding="{Binding ProductName}"
+                                            Width="*"/>
+                        <DataGridTextColumn Header="Остаток" Width="150"
+                                            Binding="{Binding CurrentStock}"/>
+                        <DataGridTextColumn Header="Порог" Width="150"
+                                            Binding="{Binding Threshold}"/>
+                        <DataGridTextColumn Header="ID товара" Width="150"
+                                            Binding="{Binding ProductId}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

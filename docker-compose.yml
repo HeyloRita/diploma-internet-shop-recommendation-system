@@ -1,0 +1,41 @@
+name: internetshop
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: internetshop_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: internetshop
+      POSTGRES_USER: shop_user
+      POSTGRES_PASSWORD: postgres   # пароль прямо здесь
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shop_user -d internetshop"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: src/InternetShop.API/Dockerfile
+    container_name: internetshop_api
+    restart: unless-stopped
+    ports:
+      - "5000:80"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=internetshop;Username=shop_user;Password=postgres"
+      Jwt__Key: "SuperSecretKeyForInternetShop2026!"
+      Jwt__Issuer: "InternetShop.API"
+      Jwt__Audience: "InternetShop.WPF"
+      ASPNETCORE_ENVIRONMENT: "Production"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:

@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/InternetShop.API/InternetShop.API.csproj" />
+    <Project Path="src/InternetShop.WPF/InternetShop.WPF.csproj" />
+  </Folder>
+</Solution>
