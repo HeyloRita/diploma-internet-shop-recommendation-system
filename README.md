@@ -19,17 +19,43 @@
 
 	docker compose up -d
 
-  2. Запустить InternetShop.API:
+
+  2. Создать файл конфигурации API
+
+В папке `src/InternetShop.API` создайте файл `appsettings.json` со следующим содержимым:
+
+	{
+  	"ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5433;Database=internetshop;Username=shop_user;Password=shop_pass"
+ 	 },
+  	"Jwt": {
+    "Key": "your-super-secret-key-at-least-32-characters-long",
+    "Issuer": "InternetShop.API",
+    "Audience": "InternetShop.WPF"
+  	},
+  	"Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  	},
+  	"AllowedHosts": "*"
+	}
+
+	
+  3. Запустить InternetShop.API:
 	
 	cd diploma-internet-shop-recommendation-system\src\InternetShop.API
 
 	 dotnet run
-       
+
+	   
   4. Запустить InternetShop.WPF:
 
   	cd diploma-internet-shop-recommendation-system\src\InternetShop.WPF
 
 	 dotnet run
+
 
 ТЕСТОВЫЕ АККАУНТЫ
 
