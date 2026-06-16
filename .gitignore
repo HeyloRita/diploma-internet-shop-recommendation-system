@@ -1,17 +1,97 @@
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5433;Database=internetshop;Username=shop_user;Password=shop_pass"
-  },
-  "Jwt": {
-    "Key": "SuperSecretKeyForInternetShop2026!",
-    "Issuer": "InternetShop.API",
-    "Audience": "InternetShop.WPF"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*"
-}
+# ==============================
+# Visual Studio / .NET
+# ==============================
+
+# Результаты сборки
+bin/
+obj/
+[Bb]uild/
+[Rr]elease/
+[Dd]ebug/
+x64/
+x86/
+packages/
+
+# Пользовательские файлы VS
+*.user
+*.suo
+*.userosscache
+*.vspscc
+*.vssscc
+*.*.user
+*.csproj.user
+
+# Папка с настройками VS (персональные)
+.vs/
+
+# Файлы, создаваемые редактором
+_ReSharper.*/
+*.DotSettings.user
+*.DotSettings
+*.cache
+*.tmp
+
+# ==============================
+# Конфигурация с секретами (НЕ загружать!)
+# ==============================
+
+**/appsettings.json
+**/appsettings.Development.json
+**/appsettings.Production.json
+.env
+*.env
+
+# ==============================
+# Логи и диагностика
+# ==============================
+
+*.log
+*.logs
+*.htm
+*.html
+*.xml
+*.etl
+
+# ==============================
+# IDE и редакторы
+# ==============================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==============================
+# Docker (некоторые временные файлы)
+# ==============================
+
+*.dockerignore
+!/.dockerignore
+
+# ==============================
+# Базы данных (локальные файлы)
+# ==============================
+
+*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+
+# ==============================
+# Архивы и временные файлы
+# ==============================
+
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tmp
+*.temp
+
+# ==============================
+# Системные файлы Windows
+# ==============================
+
+Thumbs.db
+Desktop.ini
