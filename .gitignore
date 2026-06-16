@@ -66,7 +66,7 @@ _ReSharper.*/
 # ==============================
 
 *.dockerignore
-!/.dockerignore
+!src/InternetShop.API/.dockerignore
 
 # ==============================
 # Базы данных (локальные файлы)
